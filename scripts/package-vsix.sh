@@ -21,17 +21,6 @@ prune_stage() {
   fi
 
   rm -f "$STAGE_DIR/package-lock.json"
-
-  if [ -d "$STAGE_DIR/media/vendor" ]; then
-    rm -f \
-      "$STAGE_DIR/media/vendor/keplergl.min.js" \
-      "$STAGE_DIR/media/vendor/react.production.min.js" \
-      "$STAGE_DIR/media/vendor/react-dom.production.min.js" \
-      "$STAGE_DIR/media/vendor/redux.js" \
-      "$STAGE_DIR/media/vendor/react-redux.min.js" \
-      "$STAGE_DIR/media/vendor/styled-components.min.js" \
-      "$STAGE_DIR/media/vendor/redux.min.js"
-  fi
 }
 
 trap cleanup EXIT
@@ -57,7 +46,7 @@ node -e '
   fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 ' "$STAGE_DIR/package.json"
 
-for path in README.md .vscodeignore media resources; do
+for path in README.md .vscodeignore images media resources; do
   if [ -e "$ROOT_DIR/$path" ]; then
     cp -R "$ROOT_DIR/$path" "$STAGE_DIR/$path"
   fi

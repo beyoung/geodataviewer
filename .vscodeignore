@@ -1,6 +1,8 @@
 .vscode/**
 data/**
 images/**
+!images/map.png
+!images/map.svg
 geo-data-viewer/**
 src/**
 scripts/**
